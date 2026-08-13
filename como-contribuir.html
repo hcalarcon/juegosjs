@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>¿Cómo agregar mi juego?</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="contenedor">
+      <header>
+        <h1>🎮 ¿Cómo agrego mi juego?</h1>
+        <p>Guía para colaborar con el proyecto usando Git y GitHub</p>
+      </header>
+
+      <nav>
+        <a href="index.html">← Volver a los juegos</a>
+      </nav>
+
+      <main>
+        <h2>🚀 Quiero agregar mi juego</h2>
+
+        <p>
+          La página de juegos es un proyecto colaborativo. Para agregar tu juego
+          no vas a modificar directamente el repositorio principal.
+        </p>
+
+        <div class="alerta">
+          <strong>⚠️ IMPORTANTE</strong>
+
+          <p>
+            Primero tenés que hacer un <strong>Fork</strong>. Después vas a
+            trabajar sobre tu propia copia del proyecto y finalmente vas a
+            enviar un <strong>Pull Request</strong>.
+          </p>
+        </div>
+
+        <div class="pasos">
+          <div class="paso">
+            <h3>1. Hacé un Fork</h3>
+
+            <p>
+              Entrá al repositorio principal en GitHub y presioná el botón
+              <strong>Fork</strong>.
+            </p>
+
+            <p>
+              Esto crea una copia del proyecto en tu propia cuenta de GitHub.
+            </p>
+          </div>
+
+          <div class="paso">
+            <h3>2. Cloná tu repositorio</h3>
+
+            <p>Copiá la URL de tu Fork y abrí una terminal.</p>
+
+            <pre><code>git clone https://github.com/TU-USUARIO/juegojs.git</code></pre>
+          </div>
+
+          <div class="paso">
+            <h3>3. Entrá en la carpeta</h3>
+
+            <pre><code>cd juegosjs</code></pre>
+          </div>
+
+          <div class="paso">
+            <h3>4. Agregá tu juego</h3>
+
+            <p>
+              Creá una carpeta para tu juego dentro de
+              <strong>juegosjs/</strong>.
+            </p>
+
+            <p>Por ejemplo:</p>
+
+            <pre><code>juegosjs/
+└── snake-juan/
+    ├── index.html
+    ├── style.css
+    └── script.js</code></pre>
+
+            <p>También podés utilizar la estructura de tu juego original.</p>
+          </div>
+
+          <div class="paso">
+            <h3>5. Modificá la página principal</h3>
+
+            <p>
+              Abrí el archivo <strong>index.html</strong>
+              y buscá una tarjeta que diga
+              <strong>"Juego disponible"</strong>.
+            </p>
+
+            <p>Reemplazala con los datos de tu juego.</p>
+
+            <pre><code>&lt;div class="card"&gt;
+
+    &lt;div class="numero"&gt;01&lt;/div&gt;
+
+    &lt;h3&gt;Snake&lt;/h3&gt;
+
+    &lt;p&gt;Alumno/a: Juan Pérez&lt;/p&gt;
+
+    &lt;a href="juegos/snake-juan/" class="boton"&gt;
+        JUGAR
+    &lt;/a&gt;
+
+&lt;/div&gt;</code></pre>
+          </div>
+
+          <div class="paso">
+            <h3>6. Comprobá que funcione</h3>
+
+            <p>
+              Abrí la página en tu navegador y comprobá que tu juego se pueda
+              abrir correctamente.
+            </p>
+
+            <p>Revisá también que no hayas roto las otras tarjetas.</p>
+          </div>
+
+          <div class="paso">
+            <h3>7. Revisá los cambios</h3>
+
+            <p>Desde la terminal podés utilizar:</p>
+
+            <pre><code>git status</code></pre>
+
+            <p>Este comando muestra qué archivos fueron modificados.</p>
+          </div>
+
+          <div class="paso">
+            <h3>8. Prepará los archivos</h3>
+
+            <pre><code>git add .</code></pre>
+          </div>
+
+          <div class="paso">
+            <h3>9. Creá un Commit</h3>
+
+            <p>
+              Guardá tus cambios en Git con un mensaje que explique qué hiciste.
+            </p>
+
+            <pre><code>git commit -m "Agrego mi juego"</code></pre>
+          </div>
+
+          <div class="paso">
+            <h3>10. Subí los cambios a GitHub</h3>
+
+            <pre><code>git push</code></pre>
+          </div>
+
+          <div class="paso">
+            <h3>11. Creá un Pull Request</h3>
+
+            <p>Volvé a GitHub.</p>
+
+            <p>
+              GitHub debería mostrarte la posibilidad de crear un
+              <strong>Pull Request</strong>.
+            </p>
+
+            <p>
+              El Pull Request es una propuesta para incorporar tus cambios al
+              repositorio principal.
+            </p>
+          </div>
+
+          <div class="paso">
+            <h3>12. Esperá la revisión</h3>
+
+            <p>El profesor va a revisar tu Pull Request.</p>
+
+            <p>Puede aceptarlo o pedirte algún cambio.</p>
+
+            <p>Si todo está correcto, tu juego aparecerá en la página.</p>
+          </div>
+        </div>
+
+        <h2>💻 Comandos básicos</h2>
+
+        <pre><code># Descargar un repositorio
+git clone URL
+
+# Entrar en la carpeta
+cd nombre-del-proyecto
+
+# Ver los cambios
+git status
+
+# Preparar los cambios
+git add .
+
+# Crear un commit
+git commit -m "Descripción del cambio"
+
+# Subir los cambios
+git push</code></pre>
+
+        <div class="alerta">
+          <strong>💡 ¿Querés hacer algo más?</strong>
+
+          <p>También podés proponer mejoras para esta página.</p>
+
+          <p>
+            Por ejemplo: cambiar los colores, mejorar las tarjetas, agregar un
+            buscador, agregar categorías, crear un modo oscuro o cualquier otra
+            idea.
+          </p>
+
+          <p>
+            <strong>
+              Las mejoras también se hacen mediante Fork + Commit + Pull
+              Request.
+            </strong>
+          </p>
+        </div>
+      </main>
+
+      <footer>
+        <p>🎮 Proyecto de 5° año - Programación</p>
+        <p>Aprendiendo Git colaborando</p>
+      </footer>
+    </div>
+  </body>
+</html>

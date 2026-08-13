@@ -1,0 +1,342 @@
+/* =========================================
+   ESTILO GENERAL
+   ========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  background-color: #dcdcdc;
+
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+}
+
+/* =========================================
+   CONTENEDOR PRINCIPAL
+   ========================================= */
+
+.contenedor {
+  width: 1000px;
+  max-width: 95%;
+  margin: 20px auto;
+
+  background-color: #ffffff;
+
+  border: 1px solid #999;
+
+  box-shadow: 0 2px 8px #888;
+}
+
+/* =========================================
+   ENCABEZADO
+   ========================================= */
+
+header {
+  padding: 25px;
+
+  background: linear-gradient(to bottom, #4b8dcc, #245a91);
+
+  color: white;
+
+  border-bottom: 4px solid #183d63;
+
+  text-shadow: 1px 1px 2px #333;
+}
+
+header h1 {
+  margin: 0 0 8px 0;
+
+  font-size: 30px;
+}
+
+header p {
+  margin: 0;
+
+  font-size: 14px;
+}
+
+/* =========================================
+   MENU
+   ========================================= */
+
+nav {
+  padding: 10px;
+
+  background-color: #eeeeee;
+
+  border-bottom: 1px solid #bbb;
+
+  text-align: right;
+}
+
+nav a {
+  display: inline-block;
+
+  margin-left: 8px;
+  padding: 7px 12px;
+
+  color: #ffffff;
+
+  background: linear-gradient(to bottom, #777, #444);
+
+  border: 1px solid #333;
+  border-radius: 3px;
+
+  text-decoration: none;
+
+  font-size: 13px;
+}
+
+nav a:hover {
+  background: linear-gradient(to bottom, #999, #555);
+}
+
+/* =========================================
+   CONTENIDO
+   ========================================= */
+
+main {
+  padding: 20px;
+}
+
+main h2 {
+  margin-top: 0;
+
+  padding-bottom: 10px;
+
+  border-bottom: 1px solid #ccc;
+
+  color: #444;
+
+  font-size: 22px;
+}
+
+/* =========================================
+   GRID DE JUEGOS
+   ========================================= */
+
+.juegos {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 15px;
+}
+
+/* =========================================
+   CARD
+   ========================================= */
+
+.card {
+  position: relative;
+
+  min-height: 180px;
+
+  padding: 18px;
+
+  background-color: #f5f5f5;
+
+  border: 1px solid #aaa;
+  border-radius: 4px;
+
+  box-shadow:
+    inset 0 1px 0 #ffffff,
+    0 2px 3px #ccc;
+}
+
+.card:hover {
+  background-color: #eeeeee;
+}
+
+/* Número de juego */
+
+.numero {
+  position: absolute;
+
+  top: 8px;
+  right: 10px;
+
+  color: #999;
+
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Título */
+
+.card h3 {
+  margin: 20px 0 12px 0;
+
+  color: #245a91;
+
+  font-size: 18px;
+}
+
+/* Alumno */
+
+.card p {
+  margin: 0 0 20px 0;
+
+  color: #666;
+
+  font-size: 13px;
+}
+
+/* =========================================
+   BOTÓN JUGAR
+   ========================================= */
+
+.boton {
+  display: inline-block;
+
+  padding: 8px 18px;
+
+  background: linear-gradient(to bottom, #5cb85c, #398439);
+
+  border: 1px solid #2d6b2d;
+  border-radius: 3px;
+
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: bold;
+
+  text-shadow: 1px 1px 1px #555;
+}
+
+.boton:hover {
+  background: linear-gradient(to bottom, #6dcc6d, #398439);
+}
+
+/* =========================================
+   PIE DE PÁGINA
+   ========================================= */
+
+footer {
+  padding: 15px;
+
+  background-color: #eeeeee;
+
+  border-top: 1px solid #bbb;
+
+  text-align: center;
+
+  color: #777;
+
+  font-size: 12px;
+}
+
+footer p {
+  margin: 4px;
+}
+
+/* =========================================
+   PÁGINA DE CONTRIBUCIÓN
+   ========================================= */
+
+.pasos {
+  margin-bottom: 25px;
+}
+
+.paso {
+  margin-bottom: 15px;
+  padding: 15px;
+
+  background-color: #f5f5f5;
+
+  border: 1px solid #ccc;
+  border-left: 5px solid #245a91;
+}
+
+.paso h3 {
+  margin: 0 0 8px 0;
+
+  color: #245a91;
+}
+
+.paso p {
+  margin: 5px 0;
+
+  font-size: 14px;
+}
+
+/* =========================================
+   COMANDOS GIT
+   ========================================= */
+
+pre {
+  margin: 10px 0;
+
+  padding: 15px;
+
+  overflow-x: auto;
+
+  background-color: #222;
+
+  border: 1px solid #000;
+
+  color: #eeeeee;
+
+  font-family: "Courier New", monospace;
+
+  font-size: 13px;
+}
+
+code {
+  font-family: "Courier New", monospace;
+}
+
+/* =========================================
+   ALERTA
+   ========================================= */
+
+.alerta {
+  margin: 20px 0;
+
+  padding: 15px;
+
+  background-color: #fff4cc;
+
+  border: 1px solid #e0c36d;
+
+  color: #66551a;
+}
+
+.alerta strong {
+  color: #8a6d00;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 800px) {
+  .juegos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 550px) {
+  .juegos {
+    grid-template-columns: 1fr;
+  }
+
+  header h1 {
+    font-size: 23px;
+  }
+
+  nav {
+    text-align: center;
+  }
+
+  nav a {
+    margin: 3px;
+  }
+}

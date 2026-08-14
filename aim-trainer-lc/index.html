@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aim Trainer</title>
+<style>
+  :root {
+    --bg: #121014;
+    --panel: #1c1a20;
+    --violet: #6c5ce7;
+    --violet-dark: #4b3fb5;
+    --text: #e6e3ec;
+    --muted: #8b8794;
+    --border: #2c2a33;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  #logo {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    user-select: none;
+    transition: border-color 0.15s, background 0.15s;
+    z-index: 10;
+  }
+
+  #logo:hover {
+    border-color: var(--violet);
+    background: #24222a;
+  }
+
+  h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+
+  #menu {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    width: 320px;
+    text-align: center;
+  }
+
+  #menu p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .duration-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .duration-btn {
+    background: #24222a;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .duration-btn:hover {
+    border-color: var(--violet);
+  }
+
+  .duration-btn.selected {
+    background: var(--violet-dark);
+    border-color: var(--violet);
+  }
+
+  .record {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  #startBtn {
+    background: var(--violet);
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.15s;
+  }
+
+  #startBtn:hover {
+    background: var(--violet-dark);
+  }
+
+  #game-container {
+    display: none;
+    width: 100%;
+    max-width: 700px;
+  }
+
+  #hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  #hud span { color: var(--muted); }
+  #hud b { color: var(--text); }
+
+  #arena {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: crosshair;
+  }
+
+  .target {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--violet);
+    border: 2px solid var(--violet-dark);
+    cursor: pointer;
+    transition: transform 0.08s;
+  }
+
+  .target:active {
+    transform: scale(0.9);
+  }
+
+  #result {
+    display: none;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 30px;
+    width: 320px;
+    text-align: center;
+  }
+
+  #result h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+
+  #result .score-line {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  #result .score-line b {
+    color: var(--text);
+    font-size: 20px;
+  }
+
+  #result .new-record {
+    color: var(--violet);
+    font-size: 13px;
+    margin: 10px 0;
+    display: none;
+  }
+
+  #result button {
+    margin-top: 16px;
+    background: var(--violet);
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  #result button:hover {
+    background: var(--violet-dark);
+  }
+</style>
+</head>
+<body>
+
+<div id="logo">LC</div>
+
+<h1>Aim Trainer</h1>
+
+<div id="menu">
+  <p>Elegí la duración de la partida</p>
+  <div class="duration-options" id="durationOptions">
+    <button class="duration-btn" data-time="10">10s<div class="record" id="rec-10">Record: 0</div></button>
+    <button class="duration-btn" data-time="15">15s<div class="record" id="rec-15">Record: 0</div></button>
+    <button class="duration-btn" data-time="30">30s<div class="record" id="rec-30">Record: 0</div></button>
+    <button class="duration-btn" data-time="60">1m<div class="record" id="rec-60">Record: 0</div></button>
+  </div>
+  <button id="startBtn">Iniciar</button>
+</div>
+
+<div id="game-container">
+  <div id="hud">
+    <span>Tiempo: <b id="timeLeft">0</b>s</span>
+    <span>Puntos: <b id="score">0</b></span>
+  </div>
+  <div id="arena"></div>
+</div>
+
+<div id="result">
+  <h2>Partida terminada</h2>
+  <div class="score-line">Puntaje: <b id="finalScore">0</b></div>
+  <div class="score-line">Record personal (<span id="finalDuration"></span>): <b id="finalRecord">0</b></div>
+  <div class="new-record" id="newRecordMsg">¡Nuevo record!</div>
+  <button id="playAgainBtn">Jugar de nuevo</button>
+</div>
+
+<script>
+  const durationOptions = document.getElementById('durationOptions');
+  const startBtn = document.getElementById('startBtn');
+  const menu = document.getElementById('menu');
+  const gameContainer = document.getElementById('game-container');
+  const arena = document.getElementById('arena');
+  const timeLeftEl = document.getElementById('timeLeft');
+  const scoreEl = document.getElementById('score');
+  const resultEl = document.getElementById('result');
+  const finalScoreEl = document.getElementById('finalScore');
+  const finalRecordEl = document.getElementById('finalRecord');
+  const finalDurationEl = document.getElementById('finalDuration');
+  const newRecordMsg = document.getElementById('newRecordMsg');
+  const playAgainBtn = document.getElementById('playAgainBtn');
+  const logo = document.getElementById('logo');
+
+  let selectedDuration = 30;
+  let score = 0;
+  let timeLeft = 0;
+  let timerInterval = null;
+  let spawnTimeout = null;
+  let gameActive = false;
+
+  function getRecord(duration) {
+    return parseInt(localStorage.getItem('aim_record_' + duration) || '0', 10);
+  }
+
+  function setRecord(duration, value) {
+    localStorage.setItem('aim_record_' + duration, value);
+  }
+
+  function refreshRecordLabels() {
+    [10, 15, 30, 60].forEach(d => {
+      document.getElementById('rec-' + d).textContent = 'Record: ' + getRecord(d);
+    });
+  }
+
+  refreshRecordLabels();
+
+  // seleccion de duracion
+  durationOptions.querySelectorAll('.duration-btn').forEach(btn => {
+    if (parseInt(btn.dataset.time) === selectedDuration) btn.classList.add('selected');
+    btn.addEventListener('click', () => {
+      durationOptions.querySelectorAll('.duration-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedDuration = parseInt(btn.dataset.time);
+    });
+  });
+
+  startBtn.addEventListener('click', startGame);
+  playAgainBtn.addEventListener('click', () => {
+    resultEl.style.display = 'none';
+    menu.style.display = 'block';
+  });
+
+  logo.addEventListener('click', goToMenu);
+
+  function goToMenu() {
+    gameActive = false;
+    clearInterval(timerInterval);
+    clearTimeout(spawnTimeout);
+    arena.innerHTML = '';
+    gameContainer.style.display = 'none';
+    resultEl.style.display = 'none';
+    menu.style.display = 'block';
+  }
+
+  function startGame() {
+    score = 0;
+    timeLeft = selectedDuration;
+    gameActive = true;
+    scoreEl.textContent = score;
+    timeLeftEl.textContent = timeLeft;
+
+    menu.style.display = 'none';
+    resultEl.style.display = 'none';
+    gameContainer.style.display = 'block';
+    arena.innerHTML = '';
+
+    spawnTarget();
+
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      timeLeftEl.textContent = timeLeft;
+      if (timeLeft <= 0) endGame();
+    }, 1000);
+  }
+
+  function spawnTarget() {
+    if (!gameActive) return;
+
+    const target = document.createElement('div');
+    target.className = 'target';
+
+    const size = Math.floor(Math.random() * 50) + 25; // 25 a 75 px
+    const arenaRect = arena.getBoundingClientRect();
+    const maxX = arenaRect.width - size;
+    const maxY = arenaRect.height - size;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    target.style.width = size + 'px';
+    target.style.height = size + 'px';
+    target.style.left = x + 'px';
+    target.style.top = y + 'px';
+
+    let hit = false;
+
+    target.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!gameActive || hit) return;
+      hit = true;
+      score++;
+      scoreEl.textContent = score;
+      target.remove();
+      spawnTarget();
+    });
+
+    arena.appendChild(target);
+
+    // si no le pegan en un tiempo, desaparece y sale otro (dificultad basica)
+    spawnTimeout = setTimeout(() => {
+      if (!hit && gameActive && arena.contains(target)) {
+        target.remove();
+        spawnTarget();
+      }
+    }, 1800);
+  }
+
+  function endGame() {
+    gameActive = false;
+    clearInterval(timerInterval);
+    clearTimeout(spawnTimeout);
+    arena.innerHTML = '';
+    gameContainer.style.display = 'none';
+
+    const prevRecord = getRecord(selectedDuration);
+    const isNewRecord = score > prevRecord;
+    if (isNewRecord) setRecord(selectedDuration, score);
+
+    finalScoreEl.textContent = score;
+    finalDurationEl.textContent = selectedDuration + 's';
+    finalRecordEl.textContent = isNewRecord ? score : prevRecord;
+    newRecordMsg.style.display = isNewRecord ? 'block' : 'none';
+
+    refreshRecordLabels();
+    resultEl.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>

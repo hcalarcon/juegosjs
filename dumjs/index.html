@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WEB DOOM</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="game">
+    <canvas id="viewport"></canvas>
+
+    <canvas id="minimap"></canvas>
+    <div id="minimapLabel">MAPA</div>
+
+    <div id="crosshair"></div>
+    <div id="vignette"></div>
+    <div id="screenBezel"></div>
+
+    <div id="statusbar">
+      <div class="sb-panel sb-ammo">
+        <div class="sb-value" id="ammoVal">50</div>
+        <div class="sb-label">BALAS</div>
+      </div>
+
+      <div class="sb-bar-block">
+        <div class="sb-bar-label">VIDA</div>
+        <div class="sb-bar-track" id="healthBar"></div>
+      </div>
+
+      <div class="sb-face-frame">
+        <canvas id="faceCanvas" width="16" height="16"></canvas>
+      </div>
+
+      <div class="sb-value-block">
+        <div class="sb-value sb-value-red" id="healthVal">100</div>
+        <div class="sb-label">SALUD</div>
+      </div>
+
+      <div class="sb-panel sb-kills">
+        <div class="sb-value" id="killsVal">0</div>
+        <div class="sb-label">BAJAS</div>
+      </div>
+    </div>
+
+    <div id="hitFlash"></div>
+
+    <div id="startScreen" class="overlay">
+      <div class="panel">
+        <h1 class="flicker">WEB DOOM</h1>
+        <p>Un raycaster simple en el navegador</p>
+        <ul class="controls">
+          <li><b>W A S D</b> — Moverte</li>
+          <li><b>Mouse</b> — Mirar alrededor</li>
+          <li><b>Click</b> — Disparar</li>
+          <li><b>ESC</b> — Liberar el mouse</li>
+        </ul>
+        <button id="startBtn">EMPEZAR</button>
+      </div>
+    </div>
+
+    <div id="gameOverScreen" class="overlay hidden">
+      <div class="panel">
+        <h1 class="flicker">HAS MUERTO</h1>
+        <p id="finalScore"></p>
+        <button id="restartBtn">REINTENTAR</button>
+      </div>
+    </div>
+
+    <div id="winScreen" class="overlay hidden">
+      <div class="panel">
+        <h1 class="flicker">NIVEL LIMPIO</h1>
+        <p>Eliminaste a todos los enemigos</p>
+        <button id="restartBtn2">JUGAR DE NUEVO</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

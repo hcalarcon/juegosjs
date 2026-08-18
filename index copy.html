@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tel Aviv Autoclicker</title>
+  <!-- CSS desde carpeta script -->
+  <link rel="stylesheet" href="./juego.css">
+</head>
+<body>
+
+  <!-- FONDO -->
+  <div id="fondo"></div>
+
+  <!-- CONTENIDO DEL JUEGO -->
+  <main id="contenido">
+    <h1>TEL AVIV AUTOCLICKER SHALOM</h1>
+
+    <!-- CONTADOR -->
+    <div class="contador">
+      <h2>Monedas: <span id="monedas">0</span></h2>
+      <h3>Por clic: <span id="porClick">1</span></h3>
+      <h3>Por segundo: <span id="porSegundo">0</span></h3>
+    </div>
+
+    <!-- BOTÓN PRINCIPAL -->
+    <button id="botonClick">
+      <img src="./image.png" alt="Cara">
+    </button>
+
+    <!-- TIENDA -->
+    <div class="tienda">
+      <h2>Tienda</h2>
+      <div class="mejora">
+        <p>Cursor Mejorado (+1 por clic)</p>
+        <button onclick="comprarCursor()">Comprar (<span id="costoCursor">10</span>)</button>
+      </div>
+      <div class="mejora">
+        <p>Auto Clicker (+1 por segundo)</p>
+        <button onclick="comprarAuto()">Comprar (<span id="costoAuto">50</span>)</button>
+      </div>
+    </div>
+
+    <h3>Nivel: <span id="nivel">1</span></h3>
+
+    <div class="barraXP">
+      <div id="xp"></div>
+    </div>
+
+    <p><span id="xpActual">0</span> / <span id="xpNecesaria">100</span> XP</p>
+  </main>
+
+  <!-- JAVASCRIPT desde carpeta script -->
+  <script src="./juego.js"></script>
+</body>
+</html>
